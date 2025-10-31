@@ -44,8 +44,9 @@ async function geminiRequest(request) {
       }
     }
 
-
-    url.origin = "https://generativelanguage.googleapis.com";
+    url.protocol = 'https:';
+    url.hostname = 'generativelanguage.googleapis.com';
+    //url.origin = "https://generativelanguage.googleapis.com";
 
     console.log('Request Sending to Gemini')
     console.log('targetUrl:'+url.toString())
