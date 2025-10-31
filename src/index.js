@@ -50,7 +50,7 @@ async function handleRequest2(request) {
     const match = url.pathname.match(/\/models\/([^:]+)/);
     const model = match ? match[1] : null
     const key = getKey(model, url.searchParams.get("key"));
-     console.log("model: " + model +"\n" + key)
+    console.log("model: " , model , key)
     if(key){
       url.searchParams.set("key", key);
     } else{
@@ -67,7 +67,7 @@ async function handleRequest2(request) {
 
     url.origin = "https://generativelanguage.googleapis.com";
 
-    console.log('Request Sending to Gemini')
+    console.log('New Request Sending to Gemini')
     console.log('targetUrl:'+url.toString())
     console.log(request.headers)
 
@@ -104,4 +104,5 @@ async function handleRequest2(request) {
       headers: respHeaders
     });
 }
+
 
