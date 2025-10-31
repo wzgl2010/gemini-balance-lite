@@ -50,6 +50,7 @@ async function handleRequest2(request) {
     const match = url.pathname.match(/\/models\/([^:]+)/);
     const model = match ? match[1] : null
     const key = getKey(model, url.searchParams.get("key"));
+     console.log("model: " + model +"\n" + key)
     if(key){
       url.searchParams.set("key", key);
     } else{
@@ -76,9 +77,8 @@ async function handleRequest2(request) {
       body: request.body
     });
 
-    console.log('Request Sending to Gemini')
-    console.log('targetUrl:'+targetUrl)
-    console.log(headers)
+    console.log("Call Gemini Success")
+    console.log(response.headers)
 
       // 复制并清理请求头（移除 hop-by-hop headers）
     const hopByHop = new Set([
@@ -104,3 +104,4 @@ async function handleRequest2(request) {
       headers: respHeaders
     });
 }
+
