@@ -1,4 +1,4 @@
-import { handleRequest } from "./handle_request.js";
+import { handleRequest } from "./new_request.js";
 
 async function denoHandleRequest(req: Request): Promise<Response> {
   const url = new URL(req.url);
