@@ -54,7 +54,7 @@ async function geminiRequest(request) {
 
     const response = await fetch(url.toString(), {
       method: request.method,
-      headers: headers,
+      headers: request.headers,
       body: request.body
     });
 
