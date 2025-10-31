@@ -89,7 +89,6 @@ async function geminiRequest(request) {
 export async function handleRequest(req) {
 
     try {
-      console.log('Request URL:', req.url);
         const url = new URL(req.url); 
         console.log('Request URL:', req.url);
         if (url.pathname === '/' || url.pathname === '/index.html') {
