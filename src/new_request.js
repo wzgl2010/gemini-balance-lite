@@ -41,7 +41,7 @@ async function geminiRequest(request) {
         if (k.trim().toLowerCase() === 'x-goog-api-key'){
           const key = getKey(model, url.searchParams.get("key"));
           if(key){
-            request.headers.set(k, v);
+            request.headers.set(k, key);
           }
         }
       }
