@@ -31,17 +31,17 @@ async function geminiRequest(request) {
     const match = url.pathname.match(/\/models\/([^:]+)/);
     const model = match ? match[1] : null
     const key = getKey(model, url.searchParams.get("key"));
-   console.log("xxx", key, request.headers)
+    let reqHeaders = request.headers;
     if(key){
       url.searchParams.set("key", key);
     } else{
 
       for (const [k, v] of request.headers) {
-          console.log("xxx", k.trim().toLowerCase(), k.trim().toLowerCase() === 'x-goog-api-key')
         if (k.trim().toLowerCase() === 'x-goog-api-key'){
           const key = getKey(model, url.searchParams.get("key"));
           if(key){
-            request.headers.set(k, key);
+            reqHeaders = new Headers(request.headers); 
+            reqHeaders.set(k, key);
           }
         }
       }
@@ -53,11 +53,11 @@ async function geminiRequest(request) {
 
     console.log('Request Sending to Gemini')
     console.log('targetUrl:'+url.toString())
-    console.log(request.headers)
+    console.log(reqHeaders)
 
     const response = await fetch(url.toString(), {
       method: request.method,
-      headers: request.headers,
+      headers: reqHeaders,
       body: request.body
     });
 
