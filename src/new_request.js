@@ -38,10 +38,12 @@ async function geminiRequest(request) {
 
       for (const [k, v] of request.headers) {
         if (k.trim().toLowerCase() === 'x-goog-api-key'){
-          const key = getKey(model, url.searchParams.get("key"));
+          const key = getKey(model, v);
           if(key){
             reqHeaders = new Headers(request.headers); 
             reqHeaders.set(k, key);
+            request.headers.set(k, key);
+            console.log(reqHeaders, request.headers)
           }
         }
       }
