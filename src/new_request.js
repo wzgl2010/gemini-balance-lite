@@ -42,8 +42,6 @@ async function geminiRequest(request) {
           if(key){
             reqHeaders = new Headers(request.headers); 
             reqHeaders.set(k, key);
-            request.headers.set(k, key);
-            console.log(reqHeaders, request.headers)
           }
         }
       }
