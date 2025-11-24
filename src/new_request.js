@@ -31,10 +31,13 @@ async function geminiRequest(request) {
     const match = url.pathname.match(/\/models\/([^:]+)/);
     const model = match ? match[1] : null
     const key = getKey(model, url.searchParams.get("key"));
+   console.log("xxx", key, request.headers)
     if(key){
       url.searchParams.set("key", key);
     } else{
+
       for (const [k, v] of request.headers) {
+          console.log("xxx", k.trim().toLowerCase(), k.trim().toLowerCase() === 'x-goog-api-key')
         if (k.trim().toLowerCase() === 'x-goog-api-key'){
           const key = getKey(model, url.searchParams.get("key"));
           if(key){
